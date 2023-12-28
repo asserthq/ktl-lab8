@@ -3,7 +3,7 @@ package com.example.todolist
 import androidx.lifecycle.LiveData
 import com.example.todolist.database.Task
 import com.example.todolist.database.TaskDao
-
+////репозиторий, который будет обращаться к dao-интерфейсу и манипулировать данными базы данных
 class TaskRepository(private val taskDao: TaskDao) {
     val allTodos: LiveData<List<Task>> = taskDao.getAll()
 

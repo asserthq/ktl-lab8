@@ -8,12 +8,8 @@ import androidx.room.PrimaryKey
 class Task (
     @PrimaryKey(autoGenerate = true)
     val id: Int?,
-    @ColumnInfo(name = "title")
-    val title: String?,
     @ColumnInfo(name = "note")
     val note: String?,
-    @ColumnInfo(name = "date")
-    val date: String,
     @ColumnInfo(name = "priority")
     val priority: Int
-)
+): java.io.Serializable
