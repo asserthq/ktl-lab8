@@ -10,6 +10,8 @@ class Task (
     val id: Int?,
     @ColumnInfo(name = "note")
     val note: String?,
+    @ColumnInfo(name = "descr")
+    val descr: String?,
     @ColumnInfo(name = "priority")
-    val priority: Int
+    val priority: Int,
 ): java.io.Serializable

@@ -1,11 +1,16 @@
 package com.example.todolist.database
 
 import android.content.Context
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Task::class], version = 4, exportSchema = false)
+@Database(
+    entities = [Task::class],
+    version = 5,
+    exportSchema = false
+)
 abstract class TaskDatabase : RoomDatabase(){
     abstract fun getTodoDao(): TaskDao
 
@@ -20,7 +25,8 @@ abstract class TaskDatabase : RoomDatabase(){
                         context.applicationContext,
                         TaskDatabase::class.java,
                         "tasks_database"
-                    ).build()
+                    )
+                        .build()
                     INSTANCE = instance
                 }
                 return instance

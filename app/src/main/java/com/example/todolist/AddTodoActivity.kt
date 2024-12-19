@@ -9,8 +9,6 @@ import android.view.View
 import android.widget.Toast
 import com.example.todolist.database.Task
 import com.example.todolist.databinding.ActivityAddTodoBinding
-import java.text.SimpleDateFormat
-import java.util.Date
 
 class AddTodoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddTodoBinding
@@ -28,6 +26,7 @@ class AddTodoActivity : AppCompatActivity() {
         try {
             oldTodo = intent.getSerializableExtra("current_todo") as Task
             binding.etNote.setText(oldTodo.note)
+            binding.etDescription.setText(oldTodo.descr)
             isUpdate = true
         }catch (e: Exception){
             e.printStackTrace()
@@ -39,7 +38,8 @@ class AddTodoActivity : AppCompatActivity() {
         }
 
         binding.imgCheck.setOnClickListener {
-            val todoDescription = binding.etNote.text.toString()
+            val todoTitle = binding.etNote.text.toString()
+            val todoDescr = binding.etDescription.text.toString()
             var priority = 1
             if(binding.radioButton2.isChecked){
                 priority=2
@@ -48,11 +48,13 @@ class AddTodoActivity : AppCompatActivity() {
                 priority=3
             }
 
-            if(todoDescription.isNotEmpty()){
+            if(todoTitle.isNotEmpty()){
                 if(isUpdate){
-                    task = Task(oldTodo.id, todoDescription, priority)
+                    task = Task(oldTodo.id, todoTitle, todoDescr, priority)
+                    //task = Task(oldTodo.id, todoTitle, priority)
                 }else{
-                    task = Task(null, todoDescription, priority)
+                    task = Task(null, todoTitle, todoDescr, priority)
+                    //task = Task(null, todoTitle, priority)
                 }
                 //для передачи данных из add в main
                 var intent = Intent()
